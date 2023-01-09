@@ -1,0 +1,34 @@
+create table marks(
+ roll integer not null,
+ sub_id integer not null,
+ marks integer not null,
+ constraint primary key(roll, sub_id)
+);
+
+create table department (
+  id integer primary key,
+  name varchar(40) not null
+);
+
+create table student (
+    roll integer primary key,
+    name varchar(40) not null,
+    dept_id integer not null
+);
+
+insert into department values(1, "Construction Engineering");
+insert into department values(2, "Information Technology");
+insert into department values(3, "Instrumentation and Electronics Engineering");
+insert into department values(4, "Power Engineering");
+insert into department values(5, "Printing Engineering"); 
+  
+
+insert into student values(33, "Dhiraj Bag", 2);
+insert into student values(10, "Lajuk Golder", 2);
+insert into student values(12, "Mijanur Rahaman Mallick", 2);
+insert into student values(52, "Binoy Hembram", 2);
+
+insert into marks values(33, 1, 80);
+insert into marks values(33, 2, 85);
+insert into marks values(33, 3, 89);
+

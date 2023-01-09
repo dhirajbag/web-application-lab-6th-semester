@@ -1,0 +1,8 @@
+create table userdata(
+  user_id varchar(40) primary key,
+  password varchar(40) not null,
+  name varchar(40) not null,
+
+  email varchar(50),
+  phone varchar(15)
+);

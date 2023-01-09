@@ -1,0 +1,43 @@
+<html>
+
+<body>
+    <script lang="JavaScript">
+        function chat() {
+
+            var name = document.getElementById('name').value;
+            console.log(window.location.host);
+            if (window.WebSocket) {
+                socket = new WebSocket('ws://' + window.location.host + '/001911001033/chat/' + name);
+            } else {
+                printData('Error: Your browser does not support WebSocket.');
+                return;
+            }
+            socket.onopen = function () {
+                printData('WebSocket connection opened.');
+                var element = document.getElementById('chat');
+                var snd = document.getElementById('send');
+                snd.onclick = function () {
+                    socket.send(element.value);
+                    element.value = ''
+                };
+            };
+            socket.onclose = function () {
+                printData('WebSocket closed.');
+            };
+            socket.onmessage = function (message) {
+                printData(message.data);
+            };
+        }
+        function printData(message) {
+            var output = document.getElementById('print');
+            output.innerHTML = output.innerHTML + '<br>' + message;
+        }
+    </script>
+    <input type="text" id="name" />
+    <input type="button" onClick="chat()" value="chat" /><br>
+    <input type="text" placeholder="type and press enter to chat" id="chat" />
+    <input type="button" id="send" value="send" /><br>
+    <span id="print">
+</body>
+
+</html>

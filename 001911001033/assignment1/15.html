@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>stock price</title>
+	</head>
+	<script>
+		if(typeof(EventSource)!="undefined"){
+			es=new EventSource("./15.jsp")
+
+			es.onopen=function(evt){
+				es.onmessage=function(evt){
+					document.getElementById('result').innerHTML=evt.data;
+				}
+			}
+			es.onerror=function(evt){
+				document.getElementById('result').innerHTML="Error occured-"+evt.target.result;
+			}
+
+		}
+		else{
+			document.getElementById('result').innerHTML='SSE Not Supported';
+		}
+
+	</script>
+	<body>
+		<p id='result'></p>
+	</body>
+</html>
+
+

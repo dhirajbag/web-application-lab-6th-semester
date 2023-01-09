@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Assignment 2.13</title>
+</head>
+
+<body>
+  <div style="display: flex; flex-direction: column;">
+    <form style="margin: auto; width: 600px; border-style: ridge; padding: 20px;" onsubmit="checkTotalPrice(event)">
+      <p>Hard-Disk: </p>
+      <b>Manufacturer: </b>
+      <select id="hdd-makers"></select>
+      <br><br>
+      <b>Model: </b>
+      <select id="hdd-model"></select>
+      <br><br>
+
+      <hr>
+
+      <p>Monitor: </p>
+      <b>Manufacturer: </b>
+      <select id="monitor-makers"></select>
+      <br><br>
+      <b>Model: </b>
+      <select id="monitor-model"></select>
+      <br><br>
+
+      <hr>
+
+      <p>RAM: </p>
+      <b>Manufacturer: </b>
+      <select id="ram-makers"></select>
+      <br><br>
+      <b>Model: </b>
+      <select id="ram-model"></select>
+      <br><br>
+
+      <hr>
+
+      <p>Motherboard: </p>
+      <b>Manufacturer: </b>
+      <select id="mboard-makers"></select>
+      <br><br>
+      <b>Model: </b>
+      <select id="mboard-model"></select>
+      <br><br>
+      <hr>
+
+      <p id="total-price" style="color: green"></p>
+      <button id="check">check total price</button>
+    </form>
+
+  </div>
+
+  <script src="13.index.js"></script>
+</body>
+
+</html>

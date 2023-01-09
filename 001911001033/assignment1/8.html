@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <title>Dhiraj Bag, IT-UG3, R-33 : Assignmnet 1.8</title>
+</head>
+
+<body onload="fill_states();">
+
+    <form name="my_form">
+
+        <select name="states" onChange="on_state_change();">
+            <option value="">State</option>
+        </select>&nbsp;
+        <select name="districts" onChange="on_district_change();">
+            <option value="">District</option>
+        </select>
+    </form>
+    <br>
+    <label id="dist_info">District info will appear here.</label>
+
+    <script>
+        let data = [{
+            state: "West Bengal",
+            dists: [["West Medinipur", "My Home !!"], ["Kolkata", "My University !"], ["East Medinipur", "Nearby place..."]]
+        },
+        {
+            state: "State2",
+            dists: [["dist2-1", "info2-1"], ["dist2-2", "info2-2"], ["dist2-3", "info2-3"], ["dist2-4", "info2-4"]]
+        },
+        {
+            state: "State3",
+            dists: [["dist3-1", "info3-1"], ["dist3-2", "info3-2"], ["dist3-3", "info3-3"], ["dist3-4", "info3-4"], ["dist3-5", "info3-5"]]
+        }]
+
+        const fill_states = () => {
+
+            for (let i = 0; i < data.length; i++) {
+                let state_name = data[i].state;
+                let curr_option = document.createElement("option");
+                curr_option.text = state_name;
+                curr_option.value = state_name;
+                document.my_form.states.options.add(curr_option)
+            }
+
+        }
+
+        const on_state_change = () => {
+            document.getElementById("dist_info").innerText = "District info will appear here.";
+            const districts = document.my_form.districts;
+            while (districts.options.length > 1) {
+                districts.remove(1);
+            }
+
+            let idx = document.my_form.states.selectedIndex - 1;
+            for (let i = 0; i < data[idx].dists.length; i++) {
+                let dist_name = data[idx].dists[i][0];
+                let curr_option = document.createElement("option");
+                curr_option.text = dist_name;
+                curr_option.value = dist_name;
+                document.my_form.districts.options.add(curr_option)
+            }
+        }
+
+        const on_district_change = () => {
+            let idx1 = document.my_form.states.selectedIndex - 1;
+            let idx2 = document.my_form.districts.selectedIndex - 1;
+
+            let dist_info = document.getElementById("dist_info");
+
+            if (idx2 == -1)
+                dist_info.innerText = "District info will appear here.";
+            else
+                dist_info.innerText = data[idx1].dists[idx2][1];
+        }
+
+    </script>
+
+</html>

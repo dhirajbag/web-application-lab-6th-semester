@@ -1,0 +1,11 @@
+create table login_33 (
+  id varchar(8) primary key,
+  pwd varchar(8) not null
+  );
+
+
+  insert into login_33 values("be1933", "Bag@123");
+  insert into login_33 values("be1912", "Rahaman1");
+  insert into login_33 values("be1910", "Golder1");
+
+  commit;

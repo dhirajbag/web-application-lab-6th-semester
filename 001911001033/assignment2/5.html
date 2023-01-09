@@ -1,0 +1,72 @@
+<html>
+ <head><title>Sign Up Page</title></head>
+ <body>	
+		<label>Name: </label>
+		<input type="text" id="user_name">
+ 		<label>User ID: </label>
+ 		<input type="text" id="user_id" onblur="check()">
+ 		<label id="result"></label>
+ 		<br>
+ 		<label>Password</label>
+ 		<input type="password" id="password">
+ 		<br>
+ 		<button name="submit" onclick="insert()" id="submit_btn" disabled>submit</button>
+ 		<br>
+ 		<label id="result1"></label> 		
+ </body>
+ <script>
+ 	function check(){
+		console.log("check() called");
+ 		var user_id=document.getElementById("user_id").value;
+ 		try{
+ 			xmlHttp=new XMLHttpRequest();
+			var url = `5.check_user_id.jsp?user_id=${user_id}`;
+ 			xmlHttp.onreadystatechange=function(){
+ 				var result=document.getElementById("result");
+ 				if(xmlHttp.readyState==4){
+ 					result.innerHTML=xmlHttp.responseText;
+
+					if(result.innerText=="UserID available")
+						document.getElementById("submit_btn").disabled = false;
+					else
+						document.getElementById("submit_btn").disabled = true;
+ 				}
+ 			}
+ 			xmlHttp.open("POST",url,true);
+ 			xmlHttp.send();
+
+ 		}
+ 		catch(e1){
+ 			alert("your browser doesnt support AJAX");
+ 		}
+
+ 	}
+
+ 	function insert(){
+		console.log("inert() called");
+		var user_name = document.getElementById("user_name").value;
+ 		var user_id=document.getElementById("user_id").value;
+ 		var password=document.getElementById("password").value;
+ 	
+ 		try{
+ 			xmlHttp=new XMLHttpRequest();
+			var url = `5.insert_user.jsp?user_name=${user_name}&user_id=${user_id}&password=${password}`;
+ 			xmlHttp.onreadystatechange=function(){
+ 				var result=document.getElementById("result1");
+ 				if(xmlHttp.readyState==4){
+ 					if(xmlHttp.responseText.includes("registered"))
+ 						document.write(xmlHttp.responseText);
+ 					else
+ 						result.innerHTML=xmlHttp.responseText;
+ 				}
+ 			}
+ 			xmlHttp.open("POST",url,true);
+ 			xmlHttp.send();
+
+ 		}
+ 		catch(e1){
+ 			alert("your browser doesnt support AJAX");
+ 		}
+ 	}
+ </script>
+</html>

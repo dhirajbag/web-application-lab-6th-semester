@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE question-paper [
+
+<!ELEMENT question-paper (question*)>
+<!ELEMENT question (text, optionA, optionB, optionC, optionD, answer)>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT optionA (#PCDATA)>
+<!ELEMENT optionB (#PCDATA)>
+<!ELEMENT optionC (#PCDATA)>
+<!ELEMENT optionD (#PCDATA)>
+<!ELEMENT answer (#PCDATA)>
+
+<!ATTLIST question no CDATA #REQUIRED>
+<!ATTLIST answer value  (optionA|optionB|optionC|optionD) #REQUIRED>
+]>
+
+<question-paper>
+	<question no="1">
+		<text>How many letters in english alphabet ?</text>
+		<optionA>15</optionA>
+		<optionB>24</optionB>
+		<optionC>25</optionC>
+		<optionD>26</optionD>
+		<answer value="optionA"></answer>
+	</question>
+</question-paper>

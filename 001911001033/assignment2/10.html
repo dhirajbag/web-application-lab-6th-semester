@@ -1,0 +1,49 @@
+<html>
+ <head><title>Assignment 2.10</title></head>
+ <body>
+ 		<label>UserID: </label>
+ 		<input type="text" id="user_id">
+ 		<br>
+ 		<label>old password: </label>
+ 		<input type="password" id="old">
+ 		<br>
+ 		<label>new password: </label>
+ 		<input type="password" id="new1">
+ 		<br>
+ 		<label>Confirm password: </label>
+ 		<input type="password" id="new2">
+ 		<br>
+ 		<button name="submit" onclick="insert()">submit</button>
+ 		<br>
+ 		<label id="result"></label> 		
+ </body>
+ <script>
+
+ 	function insert(){
+ 		var user_id=document.getElementById("user_id").value;
+ 		var old=document.getElementById("old").value;
+ 		var new1=document.getElementById("new1").value;
+ 		var new2=document.getElementById("new2").value;
+ 	
+ 		try{
+ 			xmlHttp=new XMLHttpRequest();
+ 			var url = `10.change_pwd.jsp?user_id=${user_id}&old=${old}&new1=${new1}&new2=${new2}`;
+ 			xmlHttp.onreadystatechange=function(){
+ 				var result=document.getElementById("result");
+ 				if(xmlHttp.readyState==4){
+ 					if(xmlHttp.responseText.includes("changed")||xmlHttp.responseText.includes("incorrect"))
+ 						document.write(xmlHttp.responseText);
+ 					else
+ 						result.innerHTML=xmlHttp.responseText;
+ 				}
+ 			}
+ 			xmlHttp.open("POST",url,true);
+ 			xmlHttp.send();
+
+ 		}
+ 		catch(e1){
+ 			alert("your browser doesnt support AJAX");
+ 		}
+ 	}
+ </script>
+</html>

@@ -1,0 +1,10 @@
+create table login(
+user_id varchar(20) primary key,
+password varchar(30) NOT NULL,
+name varchar(40) NOT NULL
+);
+
+insert into login values("be1933", "1033", "Dhiraj Bag");
+insert into login values("be1910", "1010", "Lajuk Golder");
+insert into login values("be1912", "1012", "Mijanur Mallick");
+insert into login values("be1952", "1052", "Binoy Hembram");

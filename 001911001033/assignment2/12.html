@@ -1,0 +1,41 @@
+<html>
+ <head><title>Login page</title></head>
+ <body>
+ 		<label>User ID: </label>
+ 		<input type="text" id="user_id">
+ 		<br>
+ 		<label>Password</label>
+ 		<input type="password" id="password">
+ 		<br>
+ 		<button name="submit" onclick="login()">Login</button>
+ 		<br>
+ 		<label id="result"></label> 		
+ </body>
+ <script>
+
+ 	function login(){
+ 		var user_id=document.getElementById("user_id").value;
+ 		var password=document.getElementById("password").value;
+ 	
+ 		try{
+ 			xmlHttp=new XMLHttpRequest();
+ 			var url=`12.check_login.jsp?user_id=${user_id}&password=${password}`;
+ 			xmlHttp.onreadystatechange=function(){
+ 				var result=document.getElementById("result");
+ 				if(xmlHttp.readyState==4){
+ 					if(xmlHttp.responseText.includes("logged in"))
+ 						document.write(xmlHttp.responseText);
+ 					else
+						result.innerHTML=xmlHttp.responseText;
+ 				}
+ 			}
+ 			xmlHttp.open("POST",url,true);
+ 			xmlHttp.send();
+
+ 		}
+ 		catch(e1){
+ 			alert("your browser doesnt support AJAX");
+ 		}
+ 	}
+ </script>
+</html>

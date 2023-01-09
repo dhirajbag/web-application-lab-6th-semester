@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assignment 1.13</title>
+</head>
+
+<body>
+    <h1>Factorial Table</h1>
+    <hr>
+    <h3>This is <b>web worker<b> page .</h3>
+
+    <p>Factorial of a number :</p>
+
+    <input id="num" type="text" value="0" size="5">
+    <input type="button" value="Calculate Table" onClick="process()"><span id="result"></span>
+    <span id="table"></span>
+
+</body>
+<script>
+    function process() {
+        if (window.Worker) {
+            console.log('Worker working fine');
+            const myworker = new window.Worker('13.worker.js');
+
+            var v = document.getElementById('num').value;
+
+            // send input value to worker
+            function create() {
+                for (i = 0; i <= v; i++) {
+                    myworker.postMessage(i);
+                }
+            }
+
+            // receive calculated value from worker
+            document.getElementById('table').innerHTML = '';
+            var count = 0;
+            myworker.onmessage = function (e) {
+                /* document.getElementById('result').innerHTML = e.data; */
+                a = document.getElementById('table');
+                a.innerHTML += '<br>' + count++ + '!=' + e.data;
+            }
+            create();
+        }
+        else
+            alert("Your browser doesn't support web worker");
+    };
+</script>
+
+</html>

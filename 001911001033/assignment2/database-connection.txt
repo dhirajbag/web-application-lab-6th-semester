@@ -1,0 +1,24 @@
+JUSL Lab Environment:
+_______________________
+Source Name: be1933@172.16.4.50
+JDBC Url: jdbc:mysql://172.16.4.50:3306/test
+Driver Name: MySQL Driver
+User Name: be1933
+Password: ZoNLIAeD
+
+Program specific:
+   db_url = "jdbc:mysql://172.16.4.50:3306/test";
+   db_user = "be1933";
+   db_password = "ZoNLIAeD";
+
+
+Personal Environment:
+_____________________
+JDBC Url: jdbc:mysql://localhost:3306/test
+User Name: root
+Password: 12345
+
+Program specific:
+   db_url = "jdbc:mysql://localhost:3306/test";
+   db_user = "root";
+   db_password = "12345";

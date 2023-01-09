@@ -1,0 +1,27 @@
+<%@page import="java.sql.*"%>
+
+<%! String db_url = "jdbc:mysql://localhost:3306/test";
+    String db_user = "root";
+    String db_password="12345";
+%>
+
+<%
+	try{
+		Class.forName("com.mysql.jdbc.Driver");
+		Connection con=DriverManager.getConnection(db_url, db_user, db_password);
+		String state_id = request.getParameter("state_id");
+
+		Statement stmt=con.createStatement();
+		String query="select districtid, district_title from district where state_id = "+state_id;
+		ResultSet rs=stmt.executeQuery(query);
+
+        out.println("<option>Select District</option>");
+		while(rs.next()){
+            out.println("<option value=\"" + rs.getString(1)+ "\">"+ rs.getString(2)+"</option>");
+		 }
+	
+    }
+	catch(Exception e){
+	    out.println(e);
+	}
+%>

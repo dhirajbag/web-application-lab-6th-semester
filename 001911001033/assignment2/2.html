@@ -1,0 +1,48 @@
+<html>
+
+<head>
+	<title>Assignment 2.2</title>
+</head>
+
+<body>
+	<form method="get" id="namewise_search_form" action = "2.search_student.jsp">
+		<label>Enter the string: </label>
+		<input type="text" name="substring"></input>
+		<input type="submit"></input>
+	</form>
+	<br />
+	<br />
+	<form method="get" id="deptwise_search_form" action="2.dept_wise_students.jsp">
+		<label>Department: </label>
+		<select id="dept" name="dept">
+		</select>
+		<input type="submit"></input>
+	</form>
+</body>
+
+<script>
+	window.onload = () => {
+		load_departments();
+	}
+
+	function load_departments() {
+		console.log("load_departments() called");
+		try {
+			xmlHttp = new XMLHttpRequest();
+			var url = `2.get_departments.jsp`;
+			xmlHttp.onreadystatechange = function () {
+				var result = document.getElementById("dept");
+				if (xmlHttp.readyState == 4) {
+					result.innerHTML = xmlHttp.responseText;
+				}
+			}
+			xmlHttp.open("GET", url, true);
+			xmlHttp.send();
+		}
+		catch (e) {
+			alert("your browser doesnt support AJAX");
+		}
+	}
+</script>
+
+</html>

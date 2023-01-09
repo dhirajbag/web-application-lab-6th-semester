@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Question 11</title>
+</head>
+
+<body>
+    <h1> Different Components of Computer </h1>
+
+    <div id="all_buttons">
+        <button id="addbtn" onclick="show_add()">Show Add Box</button>
+        <button id="showbtn" onclick="show_entries()">Show Entries</button>
+    </div>
+
+    <div id="add_section" style="display:none;">
+        <hr>
+        <table class="table">
+            <tr>
+                <th>Name :</th>
+                <td><input type="text" id="name" placeholder="Enter the name"></td>
+            </tr>
+            <tr>
+                <th>Manufacturer :</th>
+                <td><input type="text" id="manufacturer" placeholder="Enter the Manufacturer"></td>
+            </tr>
+            <tr>
+                <th>Price :</th>
+                <td><input type="text" id="price" placeholder="Enter the Price"></td>
+            </tr>
+        </table>
+        <button id="addbtn" onclick="add_entries()">Add item</button>
+    </div>
+
+    <div id="show_section" style="display:none;">
+        <hr>
+        <table id="show_tbl">
+            <tr>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>Price</th>
+            </tr>
+        </table>
+
+
+    </div>
+
+    <br><br>
+
+
+    <script>
+        var db;
+        window.onload = function onload() {
+            // checking support for indexedDB 
+            if (!window.indexedDB) {
+                alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+            }
+            // open database
+            var request = indexedDB.open('db_33', 1);
+            request.onsuccess = function (e) {
+                console.log('success: Database opened');
+                db = e.target.result;
+            }
+
+            request.onerror = function (e) {
+                console.log('Error: Not opening database...');
+            }
+
+            request.onupgradeneeded = function (e) {
+                db = e.target.result;
+
+                if (!db.objectStoreNames.contains('computer_components')) {
+                    var os = db.createObjectStore('computer_components', { keyPath: ['name', 'manufacturer']});
+                }
+            }
+        }
+
+        function add_entries() {
+            document.getElementById("show_section").style.display = "none";
+            var name = document.getElementById("name").value;
+            document.getElementById("name").value = "";
+
+            var manufacturer = document.getElementById("manufacturer").value;
+            document.getElementById("manufacturer").value = "";
+
+            var price = document.getElementById("price").value;
+            document.getElementById("price").value = "";
+
+            var transaction = db.transaction(["computer_components"], "readwrite");
+
+            var store = transaction.objectStore("computer_components");
+
+            var hdd = {
+                name: name,
+                manufacturer: manufacturer,
+                price: price
+            };
+
+            var request = store.add(hdd);
+
+            request.onsuccess = function (e) {
+                console.log("Added successfully.");
+            }
+
+            request.onerror = function (e) {
+                alert('Sorry ! customers are not added');
+                console.log('error', e.target.error.name)
+            }
+        }
+
+        function show_entries() {
+            document.getElementById("show_section").style.display = "block";
+            let tbl = document.getElementById("show_tbl");
+
+            while(tbl.rows.length > 1)
+                tbl.deleteRow(-1);
+
+            var transaction = db.transaction(["computer_components"], "readwrite");
+            var store = transaction.objectStore("computer_components");
+
+
+            store.openCursor().onsuccess = event => {
+                var cursor = event.target.result;
+                if (cursor) {
+                    var row = tbl.insertRow(-1);
+                    var cell0 = row.insertCell(-1);
+                    var cell1 = row.insertCell(-1);
+                    var cell2 = row.insertCell(-1);
+
+                    cell0.innerHTML = cursor.value.name;
+                    cell1.innerHTML = cursor.value.manufacturer;
+                    cell2.innerHTML = cursor.value.price;
+
+                    console.log("Name: " + cursor.value.name + ", Manufacturer: " + cursor.value.manufacturer + ", Price: " + cursor.value.price);
+                    
+                    cursor.continue();
+                }
+                else {
+                    console.log("No more entries!");
+                }
+            };
+        }
+
+        function show_add() {
+            document.getElementById("add_section").style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>

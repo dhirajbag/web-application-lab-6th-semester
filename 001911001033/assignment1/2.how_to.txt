@@ -1,0 +1,7 @@
+-> telnet ip_addr port
+-> GET /001911001033/first.html HTTP/1.0
+   [Enter]
+   [Enter]
+
+
+=> Response will be recived.

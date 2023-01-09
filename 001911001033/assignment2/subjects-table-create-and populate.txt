@@ -1,0 +1,61 @@
+create table subjects(
+ id integer primary key auto_increment,
+ name varchar(40) not null,
+ semester integer not null
+ );
+
+insert into subjects(name, semester) values("Engineering Mechanics", 1);
+insert into subjects(name, semester) values("Physics", 1);
+insert into subjects(name, semester) values("Chemistry", 1);
+insert into subjects(name, semester) values("Humanities & Sociology", 1);
+insert into subjects(name, semester) values("SoftSkills and English", 1);
+
+insert into subjects(name, semester) values("Computer Proramming & Numerical Methods", 2);
+insert into subjects(name, semester) values("Basic Electronics", 2);
+insert into subjects(name, semester) values("Basic Electrical Engineering", 2);
+insert into subjects(name, semester) values("Mathematics-1", 2);
+insert into subjects(name, semester) values("Engineering Drawing", 2);
+
+
+insert into subjects(name, semester) values("Data Structures & Algorithms", 3);
+insert into subjects(name, semester) values("Mathematics for IT-1", 3);
+insert into subjects(name, semester) values("Database Management Systems", 3);
+insert into subjects(name, semester) values("Object Oriented Programming", 3);
+insert into subjects(name, semester) values("Computer Org. and Arch.", 3);
+insert into subjects(name, semester) values("Assembly Language Lab", 3);
+
+insert into subjects(name, semester) values("Object Oriented Systems", 4);
+insert into subjects(name, semester) values("Mathematics for IT-2", 4);
+insert into subjects(name, semester) values("Software Engineering", 4);
+insert into subjects(name, semester) values("Graph Theory and Combnitorics", 4);
+insert into subjects(name, semester) values("Computer Networks", 4);
+insert into subjects(name, semester) values("Graphics & Geometric Modelling", 4);
+
+insert into subjects(name, semester) values("Artificial Intelligence", 5);
+insert into subjects(name, semester) values("Wireless and Mobile Networks", 5);
+insert into subjects(name, semester) values("Web Technologies I", 5);
+insert into subjects(name, semester) values("Automata and Compiler", 5);
+insert into subjects(name, semester) values("Operating Systems", 5);
+
+insert into subjects(name, semester) values("Design & Analysis of Algo.", 6);
+insert into subjects(name, semester) values("Information Security", 6);
+insert into subjects(name, semester) values("Web Technologies II", 6);
+insert into subjects(name, semester) values("Multimedia Coding", 6);
+insert into subjects(name, semester) values("BigData-Honours", 6);
+insert into subjects(name, semester) values("SoftComputing-Honours", 6);
+insert into subjects(name, semester) values("AI-Open Elective", 6);
+
+insert into subjects(name, semester) values("Machine Learning-Elective3", 7);
+insert into subjects(name, semester) values("Data Mining-Elective3", 7);
+insert into subjects(name, semester) values("IoT-Elective3", 7);
+insert into subjects(name, semester) values("Bio Inoformatics-elective3", 7);
+insert into subjects(name, semester) values("Distributed Computing", 7);
+insert into subjects(name, semester) values("Network Security-Honours", 7);
+
+insert into subjects(name, semester) values("Data Science-Honours", 8);
+insert into subjects(name, semester) values("Management", 8);
+insert into subjects(name, semester) values("Pattern Recognition-HonoursElective4", 8);
+insert into subjects(name, semester) values("NLP & Text Mining-HonoursElective4", 8);
+insert into subjects(name, semester) values("Cyber Forensics-HonoursElective4", 8);
+insert into subjects(name, semester) values("Digital Image Processing", 8);
+

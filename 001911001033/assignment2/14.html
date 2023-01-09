@@ -1,0 +1,52 @@
+<html>
+ <head><title>Student portal</title></head>
+ <body>
+ 		<form method="GET" action="14b.jsp">
+ 			<label> Roll no </label>
+ 			<input type="number" name="roll">
+ 			<br><br><br>
+ 			<label> Semester </label>
+ 			<select name="sem" id="sem" onblur="check()">
+ 				<option selected hidden>Semester</option>
+ 				<option  value='1'>1</option>
+ 				<option  value='2'>2</option>
+ 				<option  value='3'>3</option>
+				<option  value='4'>4</option>
+ 				<option  value='5'>5</option>
+ 				<option  value='6'>6</option>
+				<option  value='7'>7</option>
+ 				<option  value='8'>8</option>
+ 			</select>
+ 			<br>
+ 			<br>
+ 			<br>
+ 			<label> Subjects </label>
+ 			<select name="subject" id="subject">
+ 				<option selected hidden>Subjects</option>
+ 			</select>
+ 			<br>
+ 			<br>
+ 			<input type="submit" >
+ 		</form>		
+ </body>
+ <script>
+ 	function check(){
+ 		var val=document.getElementById("sem").value;
+ 		try{
+ 			xmlHttp=new XMLHttpRequest();
+ 			var url=`14a.jsp?sem=${val}`;
+ 			xmlHttp.onreadystatechange=function(){
+ 				var result=document.getElementById("subject");
+ 				if(xmlHttp.readyState==4){
+ 					result.innerHTML=xmlHttp.responseText;
+ 				}
+ 			}
+ 			xmlHttp.open("GET",url,true);
+ 			xmlHttp.send();
+ 		}
+ 		catch(e){
+ 			alert("your browser doesnt support AJAX");
+ 		}
+ 	}
+ </script>
+</html>

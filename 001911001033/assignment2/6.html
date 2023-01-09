@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title>Dhiraj Bag, IT-UG3, R-33 : Assignmnet 1.8</title>
+</head>
+
+<body onload="fill_states();">
+
+    <form name="my_form">
+
+        <select name="states" onChange="on_state_change();" id="state_select">
+            <option value="">State</option>
+        </select>&nbsp;
+        <select name="districts" onChange="on_district_change();" id="district_select">
+            <option value="">District</option>
+        </select>
+    </form>
+    <br>
+    <span id="dist_info">District info will appear here.</span>
+
+    <script>
+
+        const fill_states = () => {
+            console.log("fill_states() called");
+            try {
+                xmlHttp = new XMLHttpRequest();
+                window.location.host
+                var url = `6.fill_states.jsp`;
+                xmlHttp.onreadystatechange = function () {
+
+                    if (xmlHttp.readyState == 4) {
+                        document.getElementById("state_select").innerHTML = xmlHttp.responseText;
+                    }
+                }
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send();
+            }
+            catch (e) {
+                alert("your browser doesnt support AJAX");
+            }
+
+        }
+
+        const on_state_change = () => {
+            console.log("on_state_change() called");
+
+            document.getElementById("district_select").innerHTML = "<option>District</option>";
+            document.getElementById("dist_info").innerText = "District info will appear here.";
+
+            try {
+                xmlHttp = new XMLHttpRequest();
+                window.location.host
+                var url = `6.fill_districts.jsp?state_id=${my_form.states.value}`;
+                xmlHttp.onreadystatechange = function () {
+
+                    if (xmlHttp.readyState == 4) {
+                        document.getElementById("district_select").innerHTML = xmlHttp.responseText;
+                    }
+                }
+                xmlHttp.open("GET", url, true);
+                xmlHttp.send();
+            }
+            catch (e) {
+                alert("your browser doesnt support AJAX");
+            }
+        }
+
+        const on_district_change = () => {
+
+            let idx = my_form.districts.selectedIndex;
+            let district_id = my_form.districts.value;
+            let dist_info = document.getElementById("dist_info");
+
+            if (district_id == 0)
+                dist_info.innerText = "District info will appear here.";
+            else {
+                try {
+                    xmlHttp = new XMLHttpRequest();
+                    window.location.host
+                    var url = `http://${window.location.host}/CLASSES/6.district_info.jsp?district_id=${district_id}`;
+                    xmlHttp.onreadystatechange = function () {
+
+                        if (xmlHttp.readyState == 4) {
+                            dist_info.innerHTML = xmlHttp.responseText;
+                        }
+                    }
+                    xmlHttp.open("GET", url, true);
+                    xmlHttp.send();
+                }
+                catch (e) {
+                    alert("your browser doesnt support AJAX");
+                }
+            }
+        }
+
+    </script>
+
+</html>

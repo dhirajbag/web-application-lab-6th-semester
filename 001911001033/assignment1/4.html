@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title>Dhiraj Bag, IT-UG3, R-33 : Assignmnet 1.4</title>
+</head>
+
+<body>
+    <header style="background-color: grey;
+         padding: 20px;
+         text-align: center; "><b> Assignment 1.3 Login Page</b></header>
+    <!-- <hr> -->
+    <div style="display: flex; justify-content: center;">
+        <form>
+            <table style="justify-items: center; text-align: center;">
+                <tr>
+                    <td>
+                        <label><b>User ID:</b></label>
+                    </td>
+
+                    <td>
+                        <input type="text" name="user_id" id="uid">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label><b>Password:</b></label></td>
+                    <td>
+                        <input type="password" name="password" id="pwd" required>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <input type="reset" value="Reset">
+                    </td>
+                    <td>
+                        <input type="submit" disabled value="Login">
+                    </td>
+                    <td>
+                        <input type="button" onclick="check()" value="check">
+                    </td>
+                </tr>
+            </table>
+
+            <div id="id_mssg" style="display: none;"><label style="color: red;">User Id must contain only alphanumeric
+                    and underscore chqaracters</label></div>
+            <div id="id_len" style="display: none;"><label style="color: red;">User Id can be 10 characters at
+                    max</label></div>
+            <div id="pwd_mssg" style="display: none;"><label style="color: red;">Password must contain atleast one digit
+                    and one uppercase letter</label></div>
+            <div id="pwd_len" style="display: none;"><label style="color: red;">Length of password must be >= 6 and
+                    &lt;= 10</label></div>
+            <div id="uid_zero" style="display: none;"><label style="color: red;">User ID cannot be empty!</label></div>
+
+        </form>
+    </div>
+
+    <script>
+        let pwd = document.getElementById("pwd");
+        let uid = document.getElementById("uid");
+
+        let id_mssg = document.getElementById("id_mssg");
+        let pwd_mssg = document.getElementById("pwd_mssg");
+        let id_len = document.getElementById("id_len");
+        let pwd_len = document.getElementById("pwd_len");
+        let uid_zero = document.getElementById("uid_zero");
+
+        const RE_id = /^[a-z0-9_]+$/i;
+
+        const check = () => {
+            if(uid.value.length===0){
+                uid_zero.style.display = "block";
+            }
+            else {
+                uid_zero.style.display = "none";
+            }
+            if (uid.value.length === 0 || uid.value.match(RE_id))
+                id_mssg.style.display = "none";
+            else
+                id_mssg.style.display = "block";
+
+            if (uid.value.length > 10)
+                id_len.style.display = "block";
+            else
+                id_len.style.display = "none";
+
+            let has_digit = pwd.value.length == 0 || pwd.value.match(/[0-9]/g) != null;
+            let has_upper = pwd.value.length == 0 || pwd.value.match(/[A-Z]/g) != null;
+
+            if (has_digit && has_upper)
+                pwd_mssg.style.display = "none";
+            else
+                pwd_mssg.style.display = "block";
+
+            if (pwd.value.length >= 6 && pwd.value.length <= 10)
+                pwd_len.style.display = "none";
+            else
+                pwd_len.style.display = "block";
+        }
+
+    </script>
+</body>
+
+</html>

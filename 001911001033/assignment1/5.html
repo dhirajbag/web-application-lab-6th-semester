@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dhiraj Bag, IT-UG3, R-33 : Assignmnet 1.5</title>
+</head>
+
+<body>
+    <h1>This is the homepage</h1>
+    <script>
+        (function () {
+
+            const idleDurationSecs = 10;    
+            let idleTimeout; 
+
+            const resetIdleTimeout = function () {
+
+                if (idleTimeout) clearTimeout(idleTimeout);
+
+                idleTimeout = setTimeout(() => window.location.href = './logout.html', idleDurationSecs * 1000);
+            };
+
+            resetIdleTimeout();
+
+            ['click', 'touchstart', 'mousemove'].forEach(evt =>
+                document.addEventListener(evt, resetIdleTimeout, false)
+            );
+
+        })();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>Dhiraj Bag, IT-UG3, R-33 : Assignmnet 1.7</title>
+</head>
+
+<body>
+
+    <form name="my_form">
+
+        <select name="years" onChange="on_year_change()">
+            <option value="">Year</option>
+            <option value="">1st</option>
+            <option value="">2nd</option>
+            <option value="">3rd</option>
+            <option value="">4th</option>
+        </select>&nbsp;
+        <select name="semesters" onChange="on_semester_change()">
+            <option value="">Semester</option>
+            <option value="">1st</option>
+            <option value="">2nd</option>
+        </select>
+    </form>
+    <br>
+    <label id="subjects_info">Subjects will appear here.</label>
+
+
+
+    <script>
+        let data = [
+            [
+                ["CPNM", "Math", "Phys", "Sociology"],
+                ["Electronics", "Electrical"]
+            ],
+
+            [
+                ["OOP", "DBMS"],
+                ["COA", "CN"]
+            ],
+
+            [
+                ["OS", "WT-1", "AI", "Compilers"],
+                ["WT-2", "DAA", "IS", "MM", "Big Data"],
+            ],
+
+            [
+                ["ML", "Data Mining"],
+                ["Sub 1", "Sub 2", "Sub 3"]
+            ]
+        ]
+
+        
+        const on_year_change = () => {
+            let subs = document.getElementById("subjects_info");
+            subs.innerText = "Subjects will appear here.";
+            
+            document.my_form.semesters.selectedIndex = 0;
+
+        }
+
+        const on_semester_change = () => {
+            let subs = document.getElementById("subjects_info");
+            
+            let idx_year = document.my_form.years.selectedIndex - 1;
+            let idx_sem = document.my_form.semesters.selectedIndex -1;
+
+            subs.innerText = "Subjects[" + idx_year + ", " + idx_sem +"] => ";
+
+            for(let i=0; i<data[idx_year][idx_sem].length; i++){
+                subs.innerText = subs.innerText.concat( (i==0 ? " " : ", ")+data[idx_year][idx_sem][i]);
+            }
+        }
+
+    </script>
+
+</html>

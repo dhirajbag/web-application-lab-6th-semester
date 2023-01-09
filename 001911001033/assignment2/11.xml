@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./11.xsl"?>
+
+<!DOCTYPE question-paper [
+
+<!ELEMENT question-paper (question*)>
+<!ELEMENT question (text, optionA, optionB, optionC, optionD, answer)>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT optionA (#PCDATA)>
+<!ELEMENT optionB (#PCDATA)>
+<!ELEMENT optionC (#PCDATA)>
+<!ELEMENT optionD (#PCDATA)>
+<!ELEMENT answer (#PCDATA)>
+
+<!ATTLIST question no CDATA #REQUIRED>
+<!ATTLIST answer value  (optionA|optionB|optionC|optionD) #REQUIRED>
+]>
+
+
+
+<question-paper>
+	<question no="1">
+		<text>How many letters in english alphabet ?</text>
+		<optionA>15</optionA>
+		<optionB>24</optionB>
+		<optionC>25</optionC>
+		<optionD>26</optionD>
+		<answer value="optionA">OptionA</answer>
+	</question>
+	<question no="2">
+		<text>What is the color of the sky ?</text>
+		<optionA>Red</optionA>
+		<optionB>Green</optionB>
+		<optionC>Blue</optionC>
+		<optionD>Yellow</optionD>
+		<answer value="optionA">OptionA</answer>
+	</question>
+
+</question-paper>
